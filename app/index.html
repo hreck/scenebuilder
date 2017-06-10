@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="bower_components\bootstrap\dist\css\bootstrap.css">
+  <link rel="stylesheet" href="bower_components\angular-bootstrap\ui-bootstrap-csp.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+ <div class="container" ng-controller="SceneBuilderController" style="max-height: 100%;">
+       <div class="page-header">
+       <div class="jumbotron">
+        <h1>Scenebuilder</h1>
+            <p>Helps you create a Scene based on the current state of items</p>
+        
+        </div>
+       
+       </div>
+      
+      <div class="row">
+        <div class="col-md-4" style="height: 400px; overflow-x: hidden; overflow-y: auto;">
+          <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Items
+              <button type="button" class="btn btn-default" ng-click="refreshItems()" >
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+              </button>
+            </div>
+         
+          
+            <ul id="itemlist" class="list-group">
+              <li ng-repeat="item in items " class="list-group-item">
+                <input type="checkbox" ng-model="item.selected"></input>
+                {{item.name}}
+              </li>
+            </ul>
+         </div>
+      </div>
+
+
+
+
+        <div class="col-md-8">
+          Scene name
+          <input type="text" ng-model="sceneName"></input>
+          <button ng-click="onClick()">Senden</button>
+          <p>{{reqdata}}</p>
+          <p>{{respCode}}</p>
+        </div>
+      </div>  
+    </div>     
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>  
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="app.js"></script>
+ 
+</body>
+</html>
