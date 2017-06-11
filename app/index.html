@@ -28,7 +28,7 @@
        </div>
       
       <div class="row">
-        <div class="col-md-4" style="height: 400px; overflow-x: hidden; overflow-y: auto;">
+        <div class="col-md-4" >
           <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Items
@@ -37,13 +37,14 @@
               </button>
             </div>
          
-          
-            <ul id="itemlist" class="list-group">
-              <li ng-repeat="item in items " class="list-group-item">
-                <input type="checkbox" ng-model="item.selected"></input>
-                {{item.name}}
-              </li>
-            </ul>
+            <div style="height: 500px; overflow-x: hidden; overflow-y: auto;">
+              <ul id="itemlist" class="list-group">
+                <li ng-repeat="item in items " class="list-group-item">
+                  <input type="checkbox" ng-model="item.selected"></input>
+                  {{item.name}}
+                </li>
+              </ul>
+            </div>
          </div>
       </div>
 
@@ -53,9 +54,27 @@
         <div class="col-md-8">
           Scene name
           <input type="text" ng-model="sceneName"></input>
-          <button ng-click="onClick()">Senden</button>
-          <p>{{reqdata}}</p>
-          <p>{{respCode}}</p>
+          <button ng-click="onClick()">Send</button>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Request</h3>
+            </div>
+            <div class="panel-body">
+              <p>{{itemReq}}</p>
+             <p>{{reqdata}}</p>
+            </div>
+          </div>
+          
+          
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Response</h3>
+            </div>
+            <div class="panel-body">
+             <p>{{respCode}} - {{respText}}</p>
+            </div>
+          </div>
+          
         </div>
       </div>  
     </div>     

@@ -74,22 +74,32 @@ app.controller('SceneBuilderController', function SceneBuilderController($scope,
     return rule;
   }
 
+  var logResponse = function(resp){
+      console.log(resp.status);
+      $scope.respCode = resp.status;
+      $scope.respText = resp.statusText;
+      if(resp.status >=200 && resp.status <300){
+        $scope.respType = 'alert-success';
+      } else if(resp.status >=500 && resp.status <600){
+        $scope.respType = 'alert-danger';
+      } else {
+        $scope.respType = 'alert-warning';
+      }
+  }
+
   var sendRequest = function(switchItem, rule){
     let url = ITEMS_URL+'/'+switchItem.name;
     $http.put(url,switchItem).then(function(resp){
       console.log(resp.status);
       let rule_url = RULES_URL;
       $http.post(rule_url, rule).then(function(resp){
-        console.log(resp.status);
-        $scope.respCode = resp.status;
+        logResponse(resp);
       },function(resp){
-        console.log(resp.status);
-        $scope.respCode = resp.status;
+        logResponse(resp);
       });
 
     },function(resp){
-      console.log(resp.status);
-      $scope.respCode = resp.status;
+      logResponse(resp);
     });
 
 
@@ -131,6 +141,7 @@ app.controller('SceneBuilderController', function SceneBuilderController($scope,
       let rule = createRule(itemStates, $scope.sceneName);      
 
       $scope.reqdata = rule;
+      $scope.itemReq = switchItem;
 
       sendRequest(switchItem, rule);
 
